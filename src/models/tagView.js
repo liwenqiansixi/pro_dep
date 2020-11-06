@@ -5,20 +5,7 @@ const TagviewModel = {
     cachedViews: [],
     activeTagKey: ""
   },
-  effects: {
-    * doAddView({
-      payload
-    }, {
-      call,
-      put
-    }) {
-      yield put({
-        type: "addVisitedView",
-        payload
-      });
-      return true;
-    }
-  },
+  effects: {},
   reducers: {
     setActiveTagKey(state, {
       payload

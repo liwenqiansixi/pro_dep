@@ -88,18 +88,27 @@ export default [{
               icon: 'smile',
               path: '/form/basic-form',
               component: './form/basic-form',
+              meta: {
+                title: '基础表单'
+              }
             },
             {
               name: 'step-form',
               icon: 'smile',
               path: '/form/step-form',
               component: './form/step-form',
+              meta: {
+                title: '分步表单'
+              }
             },
             {
               name: 'advanced-form',
               icon: 'smile',
               path: '/form/advanced-form',
               component: './form/advanced-form',
+              meta: {
+                title: '高级表单'
+              }
             },
           ],
         },

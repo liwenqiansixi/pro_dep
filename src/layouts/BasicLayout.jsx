@@ -6,7 +6,7 @@
 import ProLayout, { DefaultFooter, SettingDrawer, getMenuData } from '@ant-design/pro-layout';
 import React, { useEffect, useState } from 'react';
 import { Link, connect, history } from 'umi';
-import { Result, Button, Tabs } from 'antd';
+import { Result, Button, Tabs, BackTop } from 'antd';
 import path from 'path'
 import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
@@ -105,12 +105,28 @@ const BasicLayout = (props) => {
   const toTabPage = (key) => {
     props.history.push(key)
   }
+  const toLastView = (tagList, key) => {
+    const latestView = tagList.slice(-1)[0]
+    if (latestView) {
+      props.history.push(latestView.fullPath)
+    } else if (key !== "/dashboard/analysis") {
+      props.history.push("/dashboard/analysis")
+    }
+  }
   const onTabDelete = (targetKey, action) => {
     if (action === "remove") {
-      dispatch({
-        type: "tagView/delVisitedView",
-        payload: targetKey
-      })
+      if (targetKey === "/dashboard/analysis" && visitedViews.length === 1) {
+        console.log("不能关闭首页")
+      } else {
+        dispatch({
+          type: "tagView/delVisitedView",
+          payload: targetKey
+        })
+        if (targetKey === activeTagKey) {
+          toLastView(visitedViews, targetKey)
+        }
+      }
+
     }
   }
   // 初始化TAG
@@ -237,6 +253,9 @@ const BasicLayout = (props) => {
                   visitedViews.map((tag) => {
                     return <TabPane tab={tag.title} key={tag.path}>
                       {children}
+                      {/* <BackTop>
+                        <div className="backTop">UP</div>
+                      </BackTop> */}
                     </TabPane>
                   })
                 }
