@@ -89,7 +89,7 @@ class ChartCard extends React.Component {
       <Card
         loading={loading}
         bodyStyle={{
-          padding: '20px 24px 8px 24px',
+          padding: '20px 12px 8px 12px',
         }}
         {...rest}
       >

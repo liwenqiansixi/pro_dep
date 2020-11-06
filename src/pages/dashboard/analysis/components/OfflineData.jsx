@@ -56,7 +56,7 @@ const OfflineData = ({ activeKey, loading, offlineData, offlineChartData, handle
         <TabPane tab={<CustomTab data={shop} currentTabKey={activeKey} />} key={shop.name}>
           <div
             style={{
-              padding: '0 24px',
+              padding: '0 12px',
             }}
           >
             <TimelineChart

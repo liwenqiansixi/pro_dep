@@ -41,24 +41,37 @@ export default [{
           routes: [{
               path: '/',
               redirect: '/dashboard/analysis',
+              // name: '首页',
             },
             {
               name: 'analysis',
               icon: 'smile',
               path: '/dashboard/analysis',
               component: './dashboard/analysis',
+              meta: {
+                title: '概览',
+                icon: 'dashboard',
+                noCache: true,
+                affix: true
+              }
             },
             {
               name: 'monitor',
               icon: 'smile',
               path: '/dashboard/monitor',
               component: './dashboard/monitor',
+              meta: {
+                title: '监控页'
+              }
             },
             {
               name: 'workplace',
               icon: 'smile',
               path: '/dashboard/workplace',
               component: './dashboard/workplace',
+              meta: {
+                title: '工作台'
+              }
             },
           ],
         },
@@ -270,6 +283,7 @@ export default [{
         },
         {
           component: '404',
+
         },
       ],
     },

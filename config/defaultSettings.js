@@ -1,17 +1,18 @@
 const proSettings = {
-  "navTheme": "dark",
+  "headerTheme": "dark",
+  "navTheme": "light",
   "primaryColor": "#1890ff",
-  "layout": "top",
+  "layout": "mix",
   "contentWidth": "Fixed",
   "fixedHeader": false,
   "fixSiderbar": true,
   "menu": {
-    "locale": true
+    "locale": false
   },
   "title": "Ant Design Pro",
   "pwa": false,
   "iconfontUrl": "",
-  "splitMenus": false,
+  "splitMenus": true,
   "footerRender": false
 };
 

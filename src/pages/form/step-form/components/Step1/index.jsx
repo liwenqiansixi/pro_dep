@@ -142,7 +142,7 @@ const Step1 = (props) => {
       </Form>
       <Divider
         style={{
-          margin: '40px 0 24px',
+          margin: '40px 0 12px',
         }}
       />
       <div className={styles.desc}>

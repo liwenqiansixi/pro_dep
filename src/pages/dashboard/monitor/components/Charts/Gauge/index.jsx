@@ -84,7 +84,7 @@ const Gauge = (props) => {
   const renderHtml = () => `
   <div style="width: 300px;text-align: center;font-size: 12px!important;">
     <div style="font-size: 14px; color: rgba(0,0,0,0.43);margin: 0;">${title}</div>
-    <div style="font-size: 24px;color: rgba(0,0,0,0.85);margin: 0;">
+    <div style="font-size: 12px;color: rgba(0,0,0,0.85);margin: 0;">
       ${(data[0].value * 10).toFixed(2)}%
     </div>
   </div>`;
