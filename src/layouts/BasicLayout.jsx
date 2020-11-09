@@ -6,16 +6,16 @@
 import ProLayout, { DefaultFooter, SettingDrawer, getMenuData } from '@ant-design/pro-layout';
 import React, { useEffect, useState } from 'react';
 import { Link, connect, history } from 'umi';
-import { Result, Button, Tabs, BackTop } from 'antd';
+import { Result, Button, Menu, Tabs, BackTop } from 'antd';
 import path from 'path'
 import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { getAuthorityFromRouter } from '@/utils/utils';
 import logo from '../assets/logo.svg';
+import TabDropdown from "./TabOtherOrder"
 import DraggableTabs from "./TabMenuLayout";
 
 const { TabPane } = Tabs;
-
 const noMatch = (
   <Result
     status={403}
@@ -113,20 +113,22 @@ const BasicLayout = (props) => {
       props.history.push("/dashboard/analysis")
     }
   }
-  const onTabDelete = (targetKey, action) => {
-    if (action === "remove") {
-      if (targetKey === "/dashboard/analysis" && visitedViews.length === 1) {
-        console.log("不能关闭首页")
-      } else {
-        dispatch({
-          type: "tagView/delVisitedView",
-          payload: targetKey
-        })
-        if (targetKey === activeTagKey) {
-          toLastView(visitedViews, targetKey)
-        }
+  const onTabDelete = (targetKey) => {
+    if (targetKey === "/dashboard/analysis" && visitedViews.length === 1) {
+      console.log("不能关闭首页")
+    } else {
+      dispatch({
+        type: "tagView/delVisitedView",
+        payload: targetKey
+      })
+      if (targetKey === activeTagKey) {
+        toLastView(visitedViews, targetKey)
       }
-
+    }
+  }
+  const onEdit = (targetKey, action) => {
+    if (action === "remove") {
+      onTabDelete(targetKey)
     }
   }
   // 初始化TAG
@@ -247,8 +249,9 @@ const BasicLayout = (props) => {
                 onTabClick={toTabPage}
                 activeKey={activeTagKey}
                 animated
+                tabBarExtraContent={<TabDropdown activeTagKey={activeTagKey} tabDelete={onTabDelete} />}
                 type="editable-card"
-                onEdit={onTabDelete}>
+                onEdit={onEdit}>
                 {
                   visitedViews.map((tag) => {
                     return <TabPane tab={tag.title} key={tag.path}>

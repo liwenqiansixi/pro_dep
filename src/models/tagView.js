@@ -15,6 +15,7 @@ const TagviewModel = {
         activeTagKey: payload
       }
     },
+
     addVisitedView(state, {
       payload
     }) {
@@ -42,7 +43,20 @@ const TagviewModel = {
         ...state
       }
     },
-
+    delRightView(state, {
+      payload
+    }) {
+      let newView = []
+      state.visitedViews.forEach((item, index) => {
+        if (item.path === payload) {
+          newView = state.visitedViews.slice(0, index + 1)
+        }
+      })
+      return {
+        ...state,
+        visitedViews: newView
+      }
+    },
     delVisitedView(state, {
       payload
     }) {
@@ -59,13 +73,28 @@ const TagviewModel = {
         visitedViews
       }
     },
+    delOtherVisitedView(state, {
+      payload
+    }) {
+      return {
+        ...state,
+        visitedViews: state.visitedViews.filter((item) => item.path === payload)
+      }
+    },
+    delAllVisitedView(state, {
+      payload
+    }) {
+      return {
+        ...state,
+        visitedViews: []
+      }
+    },
     delCachedView(state, {
       payload
     }) {
       const index = state.cachedViews.indexOf(payload.name)
       index > -1 && state.cachedViews.splice(index, 1)
-    },
-
+    }
     /*  delOthersVisitedViews(state, {
        payload
      }) {
